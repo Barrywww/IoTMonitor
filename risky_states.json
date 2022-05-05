@@ -1,0 +1,49 @@
+{
+    "states": [
+        {
+            "objects": ["aircon"],
+            "states": [
+                {
+                    "object": "aircon",
+                    "field": "temp",
+                    "op": ">",
+                    "val": 28
+                }
+            ]
+        },
+        {
+            "objects": ["aircon", "disinfector"],
+            "states": [
+                {
+                    "object": "aircon",
+                    "field": "temp",
+                    "op": ">",
+                    "val": 25
+                },
+                {
+                    "object": "disinfector",
+                    "field": "status",
+                    "op": "=",
+                    "val": "on"
+                }
+            ]   
+        },
+        {
+            "objects": ["window", "door"],
+            "states": [
+                {
+                    "object": "window",
+                    "field": "status",
+                    "op": "=",
+                    "val": "open"
+                },
+                {
+                    "object": "door",
+                    "field": "status",
+                    "op": "=",
+                    "val": "open"
+                }
+            ]   
+        }
+    ]
+}

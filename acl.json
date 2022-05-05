@@ -1,0 +1,21 @@
+{
+    "group": {
+        "admin": {
+            "aircon": ["r", "w"],
+            "door": ["r", "w"],
+            "disinfector": ["r", "w"],
+            "window": ["r", "w"]
+        },
+        "guest": {
+            "aircon": ["r", "w"],
+            "door": ["r"],
+            "disinfector": ["r"],
+            "window": ["r"]
+        }
+    },
+    "users": {
+        "john": {
+            "disinfector": ["r", "w"]
+        }
+    }
+}
