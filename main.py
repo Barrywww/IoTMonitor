@@ -302,7 +302,7 @@ class User():
         self.ip = ip
 
     # Login to server
-    def connect(self, server, password, DEBUG=False):
+    def connect(self, server, password, DEBUG=False, RETURN_ONLY=False):
         self.server = server
         self.public_key = self.server.init_auth(self.username)
         msg = {
@@ -318,6 +318,12 @@ class User():
                     "ip": self.ip, 
                     "msg": msg
                 }
+        elif RETURN_ONLY:
+            return {
+                "username": self.username, 
+                "ip": self.ip, 
+                "msg": msg
+            }
         return self.server.auth(self.username, self.ip, msg)
 
     # Execute command on device
@@ -462,8 +468,9 @@ if __name__ == '__main__':
     print("[SYSTEM]: RUNNINNG ATTACK CASE 03: BRUTE FORCE CRACKING")
     print(f"{bcolors.WARNING}[ATTACKER]: SENDING LOGIN REQUEST AT HIGH RATE{bcolors.ENDC}")
     attacker = User("tom", "10.1.1.1")
+    attacker_packet = attacker.connect(server, "wrong_passwd", RETURN_ONLY=True)
     for i in range(15):
-        attacker.connect(server, "wrong_passwd")
+        server.auth(attacker_packet["username"], attacker_packet["ip"], attacker_packet["msg"])
     print(f"{bcolors.WARNING}[ATTACKER]: IP IS BLOCKED :({bcolors.ENDC}")
     print("[SYSTEM]: ATTACK 03 COMPLETE")
     print("------------------------------------------------------------")
